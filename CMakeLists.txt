@@ -4,6 +4,7 @@ find_package(Rock)
 
 
 rock_init()
+rock_feature(NOCURDIR)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 

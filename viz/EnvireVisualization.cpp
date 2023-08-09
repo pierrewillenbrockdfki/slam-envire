@@ -188,3 +188,7 @@ QObject* EnvireVisualization::getVisualizer(QString name){
 	return NULL;
 }
 
+namespace envire
+{
+VizkitQtPluginImpl(EnvireVisualization);
+}

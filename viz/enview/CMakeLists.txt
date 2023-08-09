@@ -24,7 +24,6 @@ set(TARGET_SRC
 add_executable(enview ${TARGET_SRC})
 target_link_libraries(enview
     ${VIZKIT_LIBRARIES}
-    ${PROJECT_NAME}-viz
+    ${PROJECT_NAME}-viz-qt5
     envire
-    ${VIZKIT3D_LIBRARIES}
     icp Qt5::Gui)
