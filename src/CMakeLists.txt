@@ -81,7 +81,7 @@ rock_library(envire
     DEPS_PKGCONFIG ply base-types base-lib base-logging numeric ${BOX2D_DEPS_PKGCONFIG}
     DEPS_CMAKE LibYAML GDAL ${BOX2D_DEPS_CMAKE}
     LIBS ${BOX2D_LIBS}
-    DEPS_PLAIN Boost_SYSTEM Boost_FILESYSTEM Boost_THREAD)
+    DEPS Boost::system Boost::filesystem Boost::thread)
 
 target_compile_definitions(envire PRIVATE ${BOX2D_DEFINITIONS})
 
