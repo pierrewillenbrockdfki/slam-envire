@@ -12,20 +12,20 @@ endif()
 rock_add_public_dependencies(envire
     CMAKE GDAL)
 
-pkg_check_modules(box2d_pkgcfg QUIET box2d)
-if(box2d_pkgcfg_FOUND)
-    set(BOX2D_DEPS_PKGCONFIG box2d)
-    set(BOX2D_DEFINITIONS )
-    message(STATUS "box2d found using pkg-config")
+find_package(box2d QUIET)
+if(box2d_FOUND)
+    #with box2d 2.4, there was a reorganization that moved headers and functions around
+    #and also added the cmake configuration files
+    set(BOX2D_DEPS_CMAKE box2d)
+    set(BOX2D_LIBS box2d::box2d)
+    set(BOX2D_DEFINITIONS -DBOX2D_2_4)
+    message(STATUS "box2d found using cmake config")
 else()
-    find_package(box2d)
-    if(box2d_FOUND)
-        #with box2d 2.4, there was a reorganization that moved headers and functions around
-        #and also added the cmake configuration files
-        set(BOX2D_DEPS_CMAKE box2d)
-        set(BOX2D_LIBS box2d::box2d)
-        set(BOX2D_DEFINITIONS -DBOX2D_2_4)
-        message(STATUS "box2d found using cmake config")
+    pkg_check_modules(box2d_pkgcfg QUIET box2d)
+    if(box2d_pkgcfg_FOUND)
+        set(BOX2D_DEPS_PKGCONFIG box2d)
+        set(BOX2D_DEFINITIONS )
+        message(STATUS "box2d found using pkg-config")
     else()
         message(FATAL_ERROR "box2d could not be found using either pkg-config or cmake config")
     endif()
